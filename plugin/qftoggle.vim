@@ -1,4 +1,4 @@
-" Plugin for toggling the quickfix and location lists.
+" Plugin for toggling the quickfix and location list windows.
 " Author: Sean Dewar <https://github.com/seandewar>
 " Description: This file is auto-sourced by vim, and sets up the commands and
 " mappings defined by this plugin.
