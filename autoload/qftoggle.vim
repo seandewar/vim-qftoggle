@@ -40,7 +40,7 @@ function! qftoggle#ToggleQuickfix(prefix) abort
         if curr_winnr == winnr()
             wincmd p
         else
-            execute prev_winnr . 'wincmd w'
+            silent noautocmd execute prev_winnr . 'wincmd w'
             execute curr_winnr . 'wincmd w'
         endif
 
