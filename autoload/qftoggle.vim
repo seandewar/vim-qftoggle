@@ -1,4 +1,3 @@
-" Plugin for toggling the quickfix and location list windows.
 " Author: Sean Dewar <https://github.com/seandewar>
 " Description: Contains the main plugin functionality to be lazily-sourced by
 " vim when needed.
@@ -24,7 +23,7 @@ function! qftoggle#ToggleQuickfix(prefix) abort
     try
         silent execute a:prefix . 'open'
     catch /^Vim\%((\a\+)\)\?:E776/
-        echo 'No location list for window.'
+        echo 'No location list for window'
         return
     endtry
 
@@ -48,9 +47,34 @@ function! qftoggle#ToggleQuickfix(prefix) abort
 
         if is_empty && !was_open
             echo (a:prefix == 'c' ? 'QuickFix' : 'Window location')
-               \ . ' list is empty.'
+               \ . ' list is empty'
         endif
     endif
+endfunction
+
+function! qftoggle#QuickfixNext(prefix, count) abort
+    let n = a:count > 0 ? a:count : -a:count
+
+    try
+        while n > 0
+            try
+                silent execute a:prefix . (a:count > 0 ? 'next' : 'Next')
+            catch /^Vim\%((\a\+)\)\?:E553/
+                " end of list; wrap around
+                silent execute a:prefix . (a:count > 0 ? 'first' : 'last')
+            endtry
+
+            let n -= 1
+        endwhile
+
+        " previous commands were silenced, so use :cc / :ll with no args to echo
+        " the new status
+        execute a:prefix . a:prefix
+    catch /^Vim\%((\a\+)\)\?:E42/
+        echo 'No errors'
+    catch /^Vim\%((\a\+)\)\?:E776/
+        echo 'No location list for window'
+    endtry
 endfunction
 
 let &cpoptions = s:save_cpo
