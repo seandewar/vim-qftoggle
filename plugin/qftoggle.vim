@@ -10,8 +10,8 @@ let g:loaded_qftoggle_plugin = 1
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
-command! -bar Ctoggle call qftoggle#ToggleQuickfix('c')
-command! -bar Ltoggle call qftoggle#ToggleQuickfix('l')
+command! -bar Ctoggle call qftoggle#ToggleQuickfix('c', <q-mods>)
+command! -bar Ltoggle call qftoggle#ToggleQuickfix('l', <q-mods>)
 
 command! -bar -count=1 Cnext call qftoggle#QuickfixNext('c', <count>)
 command! -bar -count=1 CNext call qftoggle#QuickfixNext('c', -<count>)

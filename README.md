@@ -24,14 +24,14 @@ packadd vim-qftoggle
 
 qftoggle defines the following commands:
 
-- `:Ctoggle` for toggling the QuickFix list window
-- `:Ltoggle` for toggling the Location list window for the current window
+- `:Ctoggle` for toggling the QuickFix list window.  
+  _Optionally accepts a command modifier, e.g: `:botright Ctoggle`._
+- `:Ltoggle`; behaves as above, but for the Location list of the current window.
 - `:Cnext`, `:Cprevious`, and `:CNext`; like Vim's `:cnext`, `:cprevious`, and
-  `:cNext` commands (also optionally accepting a count argument), but can wrap
-  around each end of the QuickFix list
-- `:Lnext`, `:Lprevious`, and `:LNext`; which behaves as above, but for the
-  Location list of the current window
-
+  `:cNext` commands, but can wrap around each end of the QuickFix list.  
+  _Optionally accepts a count argument for repeating, e.g: `:5Cnext`._
+- `:Lnext`, `:Lprevious`, and `:LNext`; behaves as above, but for the Location
+  list of the current window.
 
 ## Mappings
 

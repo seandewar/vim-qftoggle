@@ -10,7 +10,7 @@ let g:loaded_qftoggle = 1
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
-function! qftoggle#ToggleQuickfix(prefix) abort
+function! qftoggle#ToggleQuickfix(prefix, mods) abort
     " we will test to see if the qf/loclist window is already open by trying to
     " open it again; if it is already open, :c/lopen will not open another
     " window, causing the number of the last window to remain the same
@@ -21,7 +21,7 @@ function! qftoggle#ToggleQuickfix(prefix) abort
     " :lopen can cause E776 if no loclist is allocated for the current window
     " yet; squash the ugly error and echo a nice message instead
     try
-        silent execute a:prefix . 'open'
+        silent execute a:mods . ' ' . a:prefix . 'open'
     catch /^Vim\%((\a\+)\)\?:E776/
         echo 'No location list for window'
         return
